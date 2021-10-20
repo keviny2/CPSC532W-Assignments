@@ -1,1 +1,4 @@
-# CPSC532W-Assignments
+# CPSC532W Homework Assignments
+## Kevin Yang
+### Student #: 50244152
+### CWL: keviny1
