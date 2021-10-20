@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  20 OCT 2021 15:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  20 OCT 2021 15:18
 entering extended mode
 **./hw2.tex
 (hw2.tex
@@ -906,88 +906,95 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 12.
+(Font)              scaled to size 24.88pt on input line 12.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 17.28pt on input line 13.
+
+Overfull \hbox (27.54385pt too wide) in paragraph at lines 12--14
+\T1/LibertinusSerif-TLF/m/n/17.28 (-20) https://github.com/keviny2/CPSC532W-Ass
+ignments/tree/main/HW2 
+ []
+
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 17.28pt on input line 12.
+(Font)              scaled to size 17.28pt on input line 16.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 13.
+(Font)              scaled to size 14.4pt on input line 17.
 <figures/evaluate_program_1.png, id=59, 872.058pt x 952.15726pt>
 File: figures/evaluate_program_1.png Graphic file (type png)
 <use figures/evaluate_program_1.png>
-Package pdftex.def Info: figures/evaluate_program_1.png  used on input line 16.
+Package pdftex.def Info: figures/evaluate_program_1.png  used on input line 20.
 
 (pdftex.def)             Requested size: 436.02792pt x 476.07747pt.
-
 [1
 
 {C:/Users/kevin/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 <figures/evaluate_program_2.png, id=67, 873.86475pt x 712.46175pt>
 File: figures/evaluate_program_2.png Graphic file (type png)
 <use figures/evaluate_program_2.png>
-Package pdftex.def Info: figures/evaluate_program_2.png  used on input line 20.
+Package pdftex.def Info: figures/evaluate_program_2.png  used on input line 24.
 
 (pdftex.def)             Requested size: 436.9313pt x 356.23pt.
  [2 <./figures/evaluate_program_1.png>]
 <figures/sample_from_joint.png, id=74, 873.86475pt x 436.029pt>
 File: figures/sample_from_joint.png Graphic file (type png)
 <use figures/sample_from_joint.png>
-Package pdftex.def Info: figures/sample_from_joint.png  used on input line 26.
+Package pdftex.def Info: figures/sample_from_joint.png  used on input line 30.
 (pdftex.def)             Requested size: 436.9313pt x 218.01396pt.
 <figures/deterministic_eval.png, id=75, 876.27374pt x 1052.13075pt>
 File: figures/deterministic_eval.png Graphic file (type png)
 <use figures/deterministic_eval.png>
-Package pdftex.def Info: figures/deterministic_eval.png  used on input line 30.
+Package pdftex.def Info: figures/deterministic_eval.png  used on input line 34.
 
 (pdftex.def)             Requested size: 438.13579pt x 526.06409pt.
  [3 <./figures/evaluate_program_2.png> <./figures/sample_from_joint.png>]
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 37.
+(Font)              scaled to size 12.0pt on input line 41.
 <figures/evaluation_1.png, id=82, 578.16pt x 433.62pt>
 File: figures/evaluation_1.png Graphic file (type png)
 <use figures/evaluation_1.png>
-Package pdftex.def Info: figures/evaluation_1.png  used on input line 39.
+Package pdftex.def Info: figures/evaluation_1.png  used on input line 43.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
  [4 <./figures/deterministic_eval.png>]
 <figures/evaluation_2.png, id=88, 578.16pt x 433.62pt>
 File: figures/evaluation_2.png Graphic file (type png)
 <use figures/evaluation_2.png>
-Package pdftex.def Info: figures/evaluation_2.png  used on input line 44.
+Package pdftex.def Info: figures/evaluation_2.png  used on input line 48.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 <figures/evaluation_3.png, id=89, 578.16pt x 433.62pt>
 File: figures/evaluation_3.png Graphic file (type png)
 <use figures/evaluation_3.png>
-Package pdftex.def Info: figures/evaluation_3.png  used on input line 49.
+Package pdftex.def Info: figures/evaluation_3.png  used on input line 53.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
  [5 <./figures/evaluation_1.png> <./figures/evaluation_2.png>]
 <figures/evaluation_4.png, id=96, 578.16pt x 433.62pt>
 File: figures/evaluation_4.png Graphic file (type png)
 <use figures/evaluation_4.png>
-Package pdftex.def Info: figures/evaluation_4.png  used on input line 54.
+Package pdftex.def Info: figures/evaluation_4.png  used on input line 58.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 <figures/graph_1.png, id=97, 578.16pt x 433.62pt>
 File: figures/graph_1.png Graphic file (type png)
 <use figures/graph_1.png>
-Package pdftex.def Info: figures/graph_1.png  used on input line 61.
+Package pdftex.def Info: figures/graph_1.png  used on input line 65.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
  [6 <./figures/evaluation_3.png> <./figures/evaluation_4.png>]
 <figures/graph_2.png, id=104, 578.16pt x 433.62pt>
 File: figures/graph_2.png Graphic file (type png)
 <use figures/graph_2.png>
-Package pdftex.def Info: figures/graph_2.png  used on input line 66.
+Package pdftex.def Info: figures/graph_2.png  used on input line 70.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
 <figures/graph_3.png, id=105, 578.16pt x 433.62pt>
 File: figures/graph_3.png Graphic file (type png)
 <use figures/graph_3.png>
-Package pdftex.def Info: figures/graph_3.png  used on input line 71.
+Package pdftex.def Info: figures/graph_3.png  used on input line 75.
 (pdftex.def)             Requested size: 289.07928pt x 216.80946pt.
  [7 <./figures/graph_1.png> <./figures/graph_2.png>]
 <figures/graph_4.png, id=113, 578.16pt x 433.62pt>
 File: figures/graph_4.png Graphic file (type png)
 <use figures/graph_4.png>
-Package pdftex.def Info: figures/graph_4.png  used on input line 76.
+Package pdftex.def Info: figures/graph_4.png  used on input line 80.
 (pdftex.def)             Requested size: 462.52863pt x 346.89647pt.
 
-Overfull \hbox (9.56073pt too wide) in paragraph at lines 76--77
+Overfull \hbox (9.56073pt too wide) in paragraph at lines 80--81
  [] 
  []
 
@@ -996,22 +1003,22 @@ Package rerunfilecheck Info: File `hw2.out' has not changed.
 (rerunfilecheck)             Checksum: 3AB01C669B6B451EECF76B81F595B0E5;2476.
  ) 
 Here is how much of TeX's memory you used:
- 14892 strings out of 478868
- 235818 string characters out of 2848809
+ 14909 strings out of 478868
+ 236467 string characters out of 2848809
  564522 words of memory out of 3000000
- 32472 multiletter control sequences out of 15000+600000
- 463746 words of font info for 94 fonts, out of 8000000 for 9000
+ 32474 multiletter control sequences out of 15000+600000
+ 470198 words of font info for 104 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,6n,94p,499b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,6n,94p,499b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
 {C:/Users/kevin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertinus-type
 1/lbts_sfissr.enc}{C:/Users/kevin/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
 /libertinus-type1/lbts_75t36g.enc}<C:/Users/kevin/AppData/Local/Programs/MiKTeX
 /fonts/type1/public/libertinus-type1/LibertinusSerif-Bold.pfb><C:/Users/kevin/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/libertinus-type1/LibertinusSeri
 f-Regular.pfb>
-Output written on hw2.pdf (8 pages, 892193 bytes).
+Output written on hw2.pdf (8 pages, 895638 bytes).
 PDF statistics:
  139 PDF objects out of 1000 (max. 8388607)
  23 named destinations out of 1000 (max. 500000)
- 26797 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 32941 words of extra memory for PDF output out of 35830 (max. 10000000)
 
