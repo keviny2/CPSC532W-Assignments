@@ -1,0 +1,24 @@
+========== Likelihood Weighting ==========
+Posterior Expectation mu: tensor(7.2680)
+Posterior Variance mu: tensor(22.6816)
+Took 119.5733654499054 seconds to finish 1
+========== Metropolis within Gibbs ==========
+Posterior Expectation mu: tensor(7.1351)
+Posterior Variance mu: tensor(0.8854)
+Took 535.6517419815063 seconds to finish 1
+========== Likelihood Weighting ==========
+Posterior Expectation slope: tensor(2.1704)
+Posterior Variance slope: tensor(0.0131)
+Posterior Expectation bias: tensor(-0.5541)
+Posterior Variance bias: tensor(0.1989)
+Took 550.4209294319153 seconds to finish 2
+========== Metropolis within Gibbs ==========
+Posterior Expectation slope: tensor(2.1201)
+Posterior Variance slope: tensor(0.0567)
+Posterior Expectation bias: tensor(-0.4001)
+Posterior Variance bias: tensor(0.8335)
+Took 2365.7585773468018 seconds to finish 2
+========== Likelihood Weighting ==========
+Posterior Expectation probability first and second datapoint are in the same cluster: tensor(0.7157)
+Posterior Variance probability first and second datapoint are in the same cluster: tensor(0.0026)
+Took 719.2520694732666 seconds to finish 5
