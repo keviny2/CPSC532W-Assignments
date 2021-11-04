@@ -1,14 +1,52 @@
 import pickle
 import torch
-from torch.distributions import normal, beta, exponential, uniform, categorical, bernoulli, gamma, dirichlet
+import random
+import string
+from torch.distributions import beta, exponential
+from distributions import Normal, Bernoulli, Gamma, Dirichlet, Categorical, UniformContinuous
 from dirac import Dirac
 
-distributions = ['normal', 'beta', 'exponential', 'uniform', 'discrete', 'flip', 'gamma', 'dirichlet', 'dirac']
+distributions = ['normal', 'beta', 'exponential', 'uniform-continuous', 'discrete', 'flip', 'gamma', 'dirichlet', 'dirac']
 
 tasks = ['Gaussian unknown mean problem',
          'Bayesian linear regression',
          'Hidden Markov Model',
          'Bayesian Neural Net']
+
+# dictionary of ordinal numbers for printing purposes
+nth = {
+    1: "first",
+    2: "second",
+    3: "third",
+    4: "fourth",
+    5: "fifth",
+    6: "sixth",
+    7: "seventh",
+    8: "eighth",
+    9: "ninth",
+    10: "tenth"
+}
+
+
+def clone(dict):
+    """
+    utility function to clone a dictionary containing lists of tensors for bbvi alg.
+    :param dict: dictionary to clone
+    :return: cloned dictionary
+    """
+
+    ret = {}
+    keys = list(dict.keys())
+    for key in keys:
+        curr = dict[key]
+
+        if curr.size() == torch.Size([]):
+            cloned = curr.clone().detach()
+        else:
+            cloned = torch.FloatTensor([elem.clone().detach() for elem in curr])
+        ret[key] = cloned
+
+    return ret
 
 
 def get_distribution(dist_type, parameters):
@@ -23,25 +61,25 @@ def get_distribution(dist_type, parameters):
             params.append(param)
 
     if dist_type == 'normal':
-        return normal.Normal(params[0], params[1])
+        return Normal(torch.FloatTensor([params[0]]), torch.FloatTensor([params[1]]))
     if dist_type == 'beta':
         return beta.Beta(params[0], params[1])
     if dist_type == 'exponential':
         return exponential.Exponential(params[0])
-    if dist_type == 'uniform':
-        return uniform.Uniform(params[0], params[1])
+    if dist_type == 'uniform-continuous':
+        return UniformContinuous(low=torch.FloatTensor([params[0]]), high=torch.FloatTensor([params[1]]))
     if dist_type == 'discrete':
-        return categorical.Categorical(probs=params[0])
+        return Categorical(probs=torch.FloatTensor(params[0]))
     if dist_type == 'flip':
-        return bernoulli.Bernoulli(params[0])
+        return Bernoulli(torch.FloatTensor([params[0]]))
     if dist_type == 'gamma':
-        return gamma.Gamma(params[0], params[1])
+        return Gamma(torch.FloatTensor([params[0]]), torch.FloatTensor([params[1]]))
     if dist_type == 'dirichlet':
-        return dirichlet.Dirichlet(params[0])
+        return Dirichlet(torch.FloatTensor(params[0]))
     if dist_type == 'dirac':
-        # TODO: implement the dirac function
-        # IDEA: can try to use sympy.functions.special.delta_functions.DiracDelta()
         return Dirac(params[0])
+
+    raise RuntimeError('{} is not a valid distribution'.format(ast))
 
 
 def save_ast(file_name, my_ast):
@@ -89,3 +127,23 @@ def substitute_sampled_vertices(expression, variable_bindings):
     return [substitute_sampled_vertices(sub_expression, variable_bindings) for sub_expression in expression]
 
 
+def generate_random_string(length):
+   letters = string.ascii_lowercase
+   return ''.join(random.choice(letters) for i in range(length))
+
+
+def create_fresh_variables(expression, length=10):
+    """
+
+    given an expression, substitute sample and observe statements so that they include a fresh variable
+    :param expression: an ast
+    :return:
+    """
+    if type(expression) is not list:
+        return expression
+    if expression[0] == 'sample':
+        expression.insert(1, generate_random_string(length))
+    if expression[0] == 'observe':
+        expression.insert(1, generate_random_string(length))
+
+    return [create_fresh_variables(sub_expression) for sub_expression in expression]

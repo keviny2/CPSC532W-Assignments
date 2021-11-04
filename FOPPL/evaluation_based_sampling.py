@@ -53,6 +53,39 @@ def evaluate_program_helper(ast, sig, variable_bindings):
             if variable_bindings['sampler'] == 'IS':
                 d, sig = evaluate_program_helper(ast[1], sig, variable_bindings)
                 return d.sample(), sig
+            if variable_bindings['sampler'] == 'BBVI' and len(ast) == 3:
+                # form is ['sample', v, e]
+                v = ast[1]
+
+                d, sig = evaluate_program_helper(ast[2], sig, variable_bindings)
+
+                # NOTE: I think v \in dom(sig(Q)) means on line 6 of Alg 11 on pg. 134 is equivalent to checking
+                #  if the key exists
+                if v not in list(sig['Q'].keys()):
+                    dist, sig = evaluate_program_helper(ast[2], sig, variable_bindings)
+                    sig['Q'][v] = dist.make_copy_with_grads()
+                    sig['O'][v] = sig['optimizer'](sig['Q'][v].Parameters(), lr=sig['lr'])
+
+                c = sig['Q'][v].sample()
+
+                # calculating the function: G(v) = \grad_{\lambda_v} \log{q(X_v | \lambda_v}
+                # see line 9 of Alg. 11 on pg. 134 of text
+
+                log_prob = sig['Q'][v].log_prob(c)
+
+                # backpropagate then store gradients for each parameter into sig['G']
+                log_prob.backward()
+
+                # store gradients
+                if len(sig['Q'][v].Parameters()[0]) > 1:  # check if the parameter is already a list itself
+                    sig['G'][v] = sig['Q'][v].Parameters()[0].grad.clone().detach()
+                else:
+                    sig['G'][v] = torch.FloatTensor([p.grad.clone().detach() for p in sig['Q'][v].Parameters()])
+                sig['O'][v].zero_grad()
+
+                logW_v = d.log_prob(c) - sig['Q'][v].log_prob(c)
+                sig['logW'] += logW_v
+                return c, sig
             else:
                 d, sig = evaluate_program_helper(ast[1], sig, variable_bindings)
                 return d.sample(), sig
@@ -65,16 +98,35 @@ def evaluate_program_helper(ast, sig, variable_bindings):
                 except KeyError:
                     raise KeyError('There is no key "logW" in sig')
                 return c2, sig
+            if variable_bindings['sampler'] == 'BBVI' and len(ast) == 4:
+                # form is ['observe', v, e1, e2]
+                d1, sig = evaluate_program_helper(ast[2], sig, variable_bindings)
+                c2, sig = evaluate_program_helper(ast[3], sig, variable_bindings)
+                try:
+                    sig['logW'] += d1.log_prob(c2)
+                except KeyError:
+                    raise KeyError('There is no key "logW" in sig')
+                return c2, sig
             else:
                 # just sample from the prior like in hw2
                 d, sig = evaluate_program_helper(ast[1], sig, variable_bindings)
                 return d.sample(), sig
         if ast[0] == 'let':
+
+            if ast[1][0] == 'm':
+                flag = True
+                while flag:
+                    # evaluate the expression that the variable will be bound to
+                    binding_obj, sig = evaluate_program_helper(ast[1][1], sig, variable_bindings)
+
+                    flag = ~(torch.abs(binding_obj) > 0.01)
+
+                variable_bindings[ast[1][0]] = binding_obj
+                return evaluate_program_helper(ast[2], sig, variable_bindings)
+
             # evaluate the expression that the variable will be bound to
             binding_obj, sig = evaluate_program_helper(ast[1][1], sig, variable_bindings)
 
-            # the variable name is found in let_ast[1][0]
-            # update variable_bindings dictionary
             variable_bindings[ast[1][0]] = binding_obj
 
             # evaluate the return expression
@@ -172,11 +224,11 @@ def run_probabilistic_tests():
 
 if __name__ == '__main__':
 
-    run_deterministic_tests()
-    
-    run_probabilistic_tests()
+    # run_deterministic_tests()
 
-    debug_start = 1
+    # run_probabilistic_tests()
+
+    debug_start = 4
     for i in range(debug_start,5):
         # ast = daphne(['desugar', '-i', '../CPSC532W-HW/Kevin/FOPPL/programs/{}.daphne'.format(i)])
 

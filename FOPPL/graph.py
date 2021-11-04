@@ -5,6 +5,15 @@
 from collections import defaultdict
 
 
+def topological_sort(graph):
+    # perform topological sort on vertices
+    g = Graph(graph[1]['V'])
+    for key, values in graph[1]['A'].items():
+        for child in values:
+            g.addEdge(key, child)
+    return g.topologicalSort()
+
+
 # Class to represent a graph
 class Graph:
     def __init__(self, vertices):

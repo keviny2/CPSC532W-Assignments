@@ -1,11 +1,10 @@
 import torch
 import torch.distributions as dist
-import re
+from graph import topological_sort
 
 from daphne import daphne
 
 import primitives
-from graph import Graph
 from tests import is_tol, run_prob_test,load_truth
 from utils import load_ast, substitute_sampled_vertices
 from dirac import Dirac
@@ -69,19 +68,15 @@ def deterministic_eval(exp):
         raise "Expression type unknown."
 
 
-def sample_from_joint(graph):
+def sample_from_joint(graph, sampling_order=None):
     "This function does ancestral sampling starting from the prior."
 
-    # perform topological sort on vertices
-    g = Graph(graph[1]['V'])
-    for key, values in graph[1]['A'].items():
-        for child in values:
-            g.addEdge(key, child)
-    sampling_order = g.topologicalSort()
+    if sampling_order is None:
+        sampling_order = topological_sort(graph)
 
     # ignore observed variables - do not sample them
-    regex = re.compile(r'observe*')
-    sampling_order = [vertex for vertex in sampling_order if not regex.match(vertex)]
+    # regex = re.compile(r'observe*')
+    # sampling_order = [vertex for vertex in sampling_order if not regex.match(vertex)]
 
     for vertex in sampling_order:
         # substitute parent nodes with their sampled values

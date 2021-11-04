@@ -1,6 +1,6 @@
 import torch
 
-primitives_list = ['+', '-', '*', '/', 'sqrt', '<', '<=', '>', '>=', '=', 'and', 'or',
+primitives_list = ['+', '-', '*', '/', 'sqrt', 'abs', '<', '<=', '>', '>=', '=', 'and', 'or',
                    'vector', 'hash-map', 'get', 'put', 'first', 'second', 'rest', 'last', 'append',
                    'mat-transpose', 'mat-tanh', 'mat-mul', 'mat-add', 'mat-repmat'
                    ]
@@ -112,17 +112,24 @@ def mat_repmat(*args):
 
 def evaluate_primitive(ast):
     if ast[0] == 'mat-mul':
+        # some hacky way of dealing with 3D tensors showing up in program 4 lol
+        if (len(ast[1].size()) > 2) and (ast[1].size()[2] == 1):
+            ast[1] = torch.squeeze(ast[1], 2)
+        if (len(ast[2].size()) > 2) and (ast[2].size()[2] == 1):
+            ast[2] = torch.squeeze(ast[2], 2)
         return torch.matmul(ast[1].float(), ast[2].float())
     if ast[0] == 'mat-add':
         return ast[1] + ast[2]
     if ast[0] == 'mat-repmat':
+        # some hacky way of dealing with 3D tensors showing up in program 4 lol
+        if (len(ast[1].size()) > 2) and (ast[1].size()[2] == 1):
+            ast[1] = torch.squeeze(ast[1], 2)
         return ast[1].repeat(int(ast[2]), int(ast[3]))
     if ast[0] == 'mat-tanh':
         return torch.tanh(ast[1])
     if ast[0] == 'mat-transpose':
         return ast[1].T
     if ast[0] == '+':
-        # return torch.sum(torch.tensor(ast[1:]))
         return ast[1] + ast[2]
     elif ast[0] == '-':
         return ast[1] - ast[2]
@@ -132,6 +139,8 @@ def evaluate_primitive(ast):
         return ast[1] / ast[2]
     elif ast[0] == 'sqrt':
         return torch.sqrt(ast[1])
+    elif ast[0] == 'abs':
+        return torch.abs(ast[1])
     elif ast[0] == '<':
         return ast[1] < ast[2]
     elif ast[0] == '>':
@@ -144,8 +153,6 @@ def evaluate_primitive(ast):
         return ast[1] or ast[2]
     if ast[0] == 'vector':
         try:
-            for i in range(1, len(ast)):
-                ast[i] = ast[i].clone().detach()
             return torch.stack(ast[1:])
         except:
             return ast[1:]

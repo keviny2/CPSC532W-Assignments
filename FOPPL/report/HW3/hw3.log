@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  27 OCT 2021 17:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.8) (preloaded format=pdflatex 2021.8.26)  27 OCT 2021 17:56
 entering extended mode
 **./hw3.tex
 (hw3.tex
@@ -910,9 +910,9 @@ LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 13.
 
-Overfull \hbox (80.37912pt too wide) in paragraph at lines 12--14
+Overfull \hbox (37.70412pt too wide) in paragraph at lines 12--14
 \T1/LibertinusSerif-TLF/m/n/17.28 (-20) https://github.com/keviny2/CPSC532W-Ass
-ignments/tree/main/FOPPL/HW3 
+ignments/tree/main/FOPPL 
  []
 
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
@@ -1171,7 +1171,7 @@ Here is how much of TeX's memory you used:
 /fonts/type1/public/libertinus-type1/LibertinusSerif-Bold.pfb><C:/Users/kevin/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/libertinus-type1/LibertinusSeri
 f-Regular.pfb>
-Output written on hw3.pdf (16 pages, 1556052 bytes).
+Output written on hw3.pdf (16 pages, 1556046 bytes).
 PDF statistics:
  271 PDF objects out of 1000 (max. 8388607)
  41 named destinations out of 1000 (max. 500000)
